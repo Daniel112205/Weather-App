@@ -2,33 +2,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: grey;
 }
 .App {
   text-align: center;
   max-width: 100%;
   margin-bottom: 50px;
+  
 }
 .container {
   width: 90%;
   margin: auto;
-}
-.row {
-  background-color: cornflowerblue;
-  border: solid 4px springgreen;
-  border-radius: 3rem;
-  display: inline-flex;
-  flex-wrap: wrap;
 }
 .title {
   color: aquamarine;
   text-transform: capitalize;
 }
 .margin {
-  margin: 3rem;
+  margin: 2rem;
 }
 .temperature {
-  color: dimgrey;
+  color: rgb(0, 241, 181);
 }
-.weather {
-  color: white;
+.text {
+  color: aquamarine;
+  text-transform: capitalize;
+}
+.props {
+  color: aquamarine;
 }
