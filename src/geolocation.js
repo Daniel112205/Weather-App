@@ -24,7 +24,7 @@ const Geolocation = () => {
         const fetchWeather = async () => {
             try {
               //Access for location
-              window.navigator.geolocation.getCurrentPosition(getLocation);
+              await window.navigator.geolocation.getCurrentPosition(getLocation);
               const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${Key}&units=metric`);
               setTemperature(response.data.main.temp);
               setCityName(response.data.name);
@@ -34,7 +34,6 @@ const Geolocation = () => {
               setIconWeather(response.data.weather[0].icon);
               setDescriptionWeather(response.data.weather[0].description);
               setSpeedWeather(response.data.wind.speed);
-              console.log(response.data);
             } catch (err) {
               console.error(err);
             }
