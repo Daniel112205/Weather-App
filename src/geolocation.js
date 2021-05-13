@@ -19,26 +19,29 @@ const Geolocation = () => {
       setLatitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     };
+    const fetchWeather = () =>{
+        //Access for location
+        window.navigator.geolocation.getCurrentPosition(getLocation);
+        const getApi = axios(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${Key}&units=metric`,
+        {
+            method: 'GET'
+        }
+        )
+        return getApi;
+    }
      //Get Weather API
     useEffect(() => {
-        const fetchWeather = async () => {
-            try {
-              //Access for location
-              window.navigator.geolocation.getCurrentPosition(getLocation);
-              const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${Key}&units=metric`);
-              setTemperature(response.data.main.temp);
-              setCityName(response.data.name);
-              setCountryName(response.data.sys.country);
-              setWeather(response.data.weather[0].main);
-              setWeatherPressure(response.data.main.pressure);
-              setIconWeather(response.data.weather[0].icon);
-              setDescriptionWeather(response.data.weather[0].description);
-              setSpeedWeather(response.data.wind.speed);
-            } catch (err) {
-              console.error(err);
-            }
-        };
-        fetchWeather();
+        
+        fetchWeather().then(response => {
+            setTemperature(response.data.main.temp);
+            setCityName(response.data.name);
+            setCountryName(response.data.sys.country);
+            setWeather(response.data.weather[0].main);
+            setWeatherPressure(response.data.main.pressure);
+            setIconWeather(response.data.weather[0].icon);
+            setDescriptionWeather(response.data.weather[0].description);
+            setSpeedWeather(response.data.wind.speed);
+        })
     }, [latitude, longitude]);
     return (
         <div className="container">
